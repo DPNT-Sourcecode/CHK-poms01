@@ -43,16 +43,19 @@ namespace BeFaster.App.Solutions.CHK
 
         private static int ComputePriceForGroupItems(string skus)
         {
-            var count = 0;
             var searchedItems = new List<char> { 'S', 'T', 'X', 'Y', 'Z' };
-            var skusChars = skus.ToCharArray();
+            var skusChars = skus.ToCharArray().ToList();
+            var count =  skusChars.Count(item => searchedItems.Contains(item));
+            var numberOfPacks = count / 3;
             var newskusChars = new List<char>();
-            for (int i = 0; i < skusChars.Length - 1; i++)
+            var charCount = 0;
+
+            for (int i = 0; i < skusChars.Count() - 1; i++)
             {
-                if(searchedItems.Contains(sku))
-                    discountItems.Add(item.Key, item.Value);   
+                if(searchedItems.Contains(skusChars[i]))
+                    count =+ 1; 
             }
-            var count = items.Count(item => searchedItems.Contains(item.Key));
+
             // var discountItems = count / discountItemCount;
             // return discountItems * 45;
         }
@@ -199,4 +202,5 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
