@@ -46,8 +46,22 @@ namespace BeFaster.App.Solutions.CHK
             var searchedItems = new List<char> { 'S', 'T', 'X', 'Y', 'Z' };
             var count = items.Where(item => searchedItems.Contains(item.Key)).Select(item => item.Value).Sum();
             var numberOfPacks = count / 3;
+            var numberOfItemsToRemove = numberOfPacks * 3;
+            var removedItemsCount = 0;
 
-            
+
+            int zCount;
+            if(items.TryGetValue('Z', out zCount))
+            {
+                if(zCount >= numberOfItemsToRemove)
+                {
+                    items['Z'] = zCount - numberOfItemsToRemove;
+                } else {
+                    items['Z'] = 0;
+                }
+            }
+
+            items['Y'] = 
         }
 
         private static (string, int) ComputePriceForGroupItems(string skus)
@@ -214,3 +228,4 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
