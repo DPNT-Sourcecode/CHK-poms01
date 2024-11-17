@@ -1,4 +1,5 @@
-﻿using BeFaster.Runner.Exceptions;
+﻿using System.Text.RegularExpressions;
+using BeFaster.Runner.Exceptions;
 
 namespace BeFaster.App.Solutions.CHK
 {
@@ -9,19 +10,32 @@ namespace BeFaster.App.Solutions.CHK
             if(string.IsNullOrEmpty(skus))
                 return -1;
             
-            var totalPrice = 0;
+            return ComputeTotalPrice(skus);
+        }
 
+        private static int ComputeTotalPrice(string skus)
+        {
+            var totalPrice = 0;
             var skusList = skus.Split(',');
             foreach (var sku in skusList)
             {
+                var numberOfItems = RetrieveNumberOfItems(sku);
                 var skuPrice = ComputeIndividualPrice(sku.Trim());
                 if(skuPrice == -1)
                     return -1;
-                    
+
                 totalPrice += skuPrice;
             }
-
             return totalPrice;
+        }
+
+
+        private static int RetrieveNumberOfItems(string sku)
+        {
+            var numberOfItemsString = Regex.Match(sku, @"^\d+").Value;
+            if(string.IsNullOrEmpty(numberOfItemsString))
+                return 0;
+            return int.Parse(numberOfItemsString);
         }
 
         private static int ComputeIndividualPrice(string sku, int numberOfItems = 1)
@@ -49,5 +63,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
