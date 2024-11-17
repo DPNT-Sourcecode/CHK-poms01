@@ -61,7 +61,8 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     if(zCount > numberOfItemsToRemove - removedItemsCount)
                     {
-                        items[item] = zCount - numberOfItemsToRemove;
+                        var remainingItems = numberOfItemsToRemove - removedItemsCount;
+                        items[item] = zCount - remainingItems;
                         removedItemsCount = numberOfItemsToRemove;
                     } else if(zCount <= numberOfItemsToRemove - removedItemsCount) {
                         items[item] = 0;
@@ -236,8 +237,3 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
-
-
-
-
-
