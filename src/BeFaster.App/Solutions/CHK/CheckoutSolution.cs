@@ -73,8 +73,65 @@ namespace BeFaster.App.Solutions.CHK
                     listOfSKUs.TryGetValue('F', out fItemsCount);
                     int freeItemsF = fItemsCount / 3;
                     return 10 * (numberOfItems - freeItemsF);
+                case "G":
+                    return 20 * numberOfItems;
+                case "H":
+                    var priceListH = new List<ProductPriceList> 
+                    {
+                        new ProductPriceList { NumberOfItems = 1, Price = 10},
+                        new ProductPriceList { NumberOfItems = 5, Price = 45},
+                        new ProductPriceList { NumberOfItems = 10, Price = 80}
+                    };
+                    return CalculatePriceIncludingDiscount(numberOfItems, priceListH);
+                case "I":
+                    return 35 * numberOfItems;
+                case "J":
+                    return 60 * numberOfItems;
+                case "K":
+                    var priceListK = new List<ProductPriceList> 
+                    {
+                        new ProductPriceList { NumberOfItems = 1, Price = 80},
+                        new ProductPriceList { NumberOfItems = 2, Price = 150}
+                    };
+                    return CalculatePriceIncludingDiscount(numberOfItems, priceListK);
+                case "L":
+                    return 90 * numberOfItems;
+                case "M":
+                    return 15 * numberOfItems;
+                case "N":
+                    return 40 * numberOfItems;
+                case "O":
+                    return 10 * numberOfItems;
+                case "P":
+                    var priceListP = new List<ProductPriceList> 
+                    {
+                        new ProductPriceList { NumberOfItems = 1, Price = 50},
+                        new ProductPriceList { NumberOfItems = 5, Price = 200}
+                    };
+                    return CalculatePriceIncludingDiscount(numberOfItems, priceListP);
+                case "Q":
+                    var priceListQ = new List<ProductPriceList> 
+                    {
+                        new ProductPriceList { NumberOfItems = 1, Price = 30},
+                        new ProductPriceList { NumberOfItems = 3, Price = 80}
+                    };
+                    return CalculatePriceIncludingDiscount(numberOfItems, priceListQ);
+                case "R":
+                    return 50 * numberOfItems;
+                case "S":
+                    return 30 * numberOfItems;
                 default:
                     return -1;
+| N    | 40    | 3N get one M free      |
+| R    | 50    | 3R get one Q free      |
+| S    | 30    |                        |
+| T    | 20    |                        |
+| U    | 40    | 3U get one U free      |
+| V    | 50    | 2V for 90, 3V for 130  |
+| W    | 20    |                        |
+| X    | 90    |                        |
+| Y    | 10    |                        |
+| Z    | 50    |                    
             }
         }
 
@@ -105,4 +162,5 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
