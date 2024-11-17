@@ -41,20 +41,21 @@ namespace BeFaster.App.Solutions.CHK
             return result;
         }
 
-        // private static int ComputePriceForGroupItems(string skus)
-        // {
-        //     var count = 0;
-        //     var searchedItems = new List<char> { 'S', 'T', 'X', 'Y', 'Z' };
-        //     var discountItems = new Dictionary<char, int>();
-        //     foreach (var item in items)
-        //     {
-        //         if(searchedItems.Contains(item.Key))
-        //             discountItems.Add(item.Key, item.Value);
-        //     }
-        //     var count = items.Count(item => searchedItems.Contains(item.Key));
-        //     // var discountItems = count / discountItemCount;
-        //     // return discountItems * 45;
-        // }
+        private static int ComputePriceForGroupItems(string skus)
+        {
+            var count = 0;
+            var searchedItems = new List<char> { 'S', 'T', 'X', 'Y', 'Z' };
+            var skusChars = skus.ToCharArray();
+            var newskusChars = new List<char>();
+            for (int i = 0; i < skusChars.Length - 1; i++)
+            {
+                if(searchedItems.Contains(sku))
+                    discountItems.Add(item.Key, item.Value);   
+            }
+            var count = items.Count(item => searchedItems.Contains(item.Key));
+            // var discountItems = count / discountItemCount;
+            // return discountItems * 45;
+        }
 
         private static int ComputeIndividualPrice(IDictionary<char, int> listOfSKUs, string sku, int numberOfItems = 1)
         {
@@ -198,3 +199,4 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
