@@ -1,4 +1,4 @@
-﻿using BeFaster.App.Solutions.CHL;
+﻿using BeFaster.App.Solutions.CHK;
 using BeFaster.App.Solutions.SUM;
 using NUnit.Framework;
 
@@ -16,8 +16,9 @@ namespace BeFaster.App.Tests.Solutions.SUM
         [TestCase("3A", ExpectedResult = 130)]
         public int ComputePrice(string? skus)
         {
-            return CheckliteSolution.ComputePrice(skus);
+            return CheckoutSolution.ComputePrice(skus);
         }
     }
 }
+
 
