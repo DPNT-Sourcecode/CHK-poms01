@@ -138,11 +138,11 @@ namespace BeFaster.App.Solutions.CHK
                 case "W":
                     return 20 * numberOfItems;
                 case "X":
-                    return 90 * numberOfItems;
+                    return 17 * numberOfItems;
                 case "Y":
-                    return 10 * numberOfItems;
+                    return 20 * numberOfItems;
                 case "Z":
-                    return 50 * numberOfItems;
+                    return 21 * numberOfItems;
                 default:
                     return -1;
             }
@@ -182,4 +182,5 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
