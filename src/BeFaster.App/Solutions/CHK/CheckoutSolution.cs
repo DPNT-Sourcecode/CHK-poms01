@@ -125,7 +125,7 @@ namespace BeFaster.App.Solutions.CHK
                 case "T":
                     return 20 * numberOfItems;
                 case "U":
-                    var freeItemsU = CalculateFreeItems(listOfSKUs, 'U', 3);
+                    var freeItemsU = CalculateFreeItems(listOfSKUs, 'U', 4);
                     return 40 * (numberOfItems - freeItemsU);
                 case "V":
                     var priceListV = new List<ProductPriceList> 
@@ -182,7 +182,3 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
-
-
-
-
