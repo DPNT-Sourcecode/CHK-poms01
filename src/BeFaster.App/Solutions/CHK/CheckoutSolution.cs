@@ -9,9 +9,19 @@ namespace BeFaster.App.Solutions.CHK
             if(string.IsNullOrEmpty(skus))
                 return -1;
             
+            var totalPrice = 0;
 
+            var skusList = skus.Split(',');
+            foreach (var sku in skusList)
+            {
+                var skuPrice = ComputeIndividualPrice(sku.Trim());
+                if(skuPrice == -1)
+                    return -1;
+                    
+                totalPrice += skuPrice;
+            }
 
-            return ComputeIndividualPrice();
+            return totalPrice;
         }
 
         private static int ComputeIndividualPrice(string sku, int numberOfItems = 1)
@@ -39,4 +49,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
