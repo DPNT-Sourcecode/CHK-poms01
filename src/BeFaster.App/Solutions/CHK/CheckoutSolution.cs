@@ -60,34 +60,38 @@ namespace BeFaster.App.Solutions.CHK
             switch (sku)
             {
                 case "A":
-                    var priceList = new List<ProductPriceList> 
+                    var priceListA = new List<ProductPriceList> 
                     {
                         new ProductPriceList { NumberOfItems = 1, Price = 50},
                         new ProductPriceList { NumberOfItems = 3, Price = 130},
                         new ProductPriceList { NumberOfItems = 5, Price = 200}
                     };
-                    return CalculatePriceIncludingDiscount(numberOfItems, 50, 130, 3);
+                    return CalculatePriceIncludingDiscount(numberOfItems, priceListA);
                 case "B":
-                    return CalculatePriceIncludingDiscount(numberOfItems, 30, 45, 2);
+                    var priceListB = new List<ProductPriceList> 
+                    {
+                        new ProductPriceList { NumberOfItems = 1, Price = 30},
+                        new ProductPriceList { NumberOfItems = 2, Price = 45}
+                    };
+                    return CalculatePriceIncludingDiscount(numberOfItems, priceListB);
                 case "C":
                     return 20 * numberOfItems;
                 case "D":
                     return 15 * numberOfItems;
                 case "E":
-
                     return 40;
                 default:
                     return -1;
             }
         }
 
-        private static int CalculatePriceIncludingDiscount(int numberOfItems, int individualPrice, int discountPrice, int numberOfItemsForDiscount)
-        {
-            int discountItemsTotalPrice = numberOfItems / numberOfItemsForDiscount * discountPrice;
-            int individualTotalPrice = numberOfItems % numberOfItemsForDiscount * individualPrice;
-            return discountItemsTotalPrice + individualTotalPrice;
-        }
-        private static int CalculatePriceIncludingDiscoun2(int numberOfItems, IEnumerable<ProductPriceList> priceList)
+        // private static int CalculatePriceIncludingDiscount(int numberOfItems, int individualPrice, int discountPrice, int numberOfItemsForDiscount)
+        // {
+        //     int discountItemsTotalPrice = numberOfItems / numberOfItemsForDiscount * discountPrice;
+        //     int individualTotalPrice = numberOfItems % numberOfItemsForDiscount * individualPrice;
+        //     return discountItemsTotalPrice + individualTotalPrice;
+        // }
+        private static int CalculatePriceIncludingDiscount(int numberOfItems, IEnumerable<ProductPriceList> priceList)
         {
             var price = 0;
             while(numberOfItems > 0)
@@ -114,4 +118,5 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
