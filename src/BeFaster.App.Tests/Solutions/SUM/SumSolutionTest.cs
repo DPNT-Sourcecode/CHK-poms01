@@ -13,13 +13,13 @@ namespace BeFaster.App.Tests.Solutions.SUM
             return SumSolution.Sum(x, y);
         }
 
-        // [TestCase("A", ExpectedResult = 50)]
-        // [TestCase("AAA", ExpectedResult = 130)]
-        // [TestCase("BBB", ExpectedResult = 75)]
-        // [TestCase("AAAAAAA", ExpectedResult = 300)]
-        // [TestCase("AB", ExpectedResult = 80)]
-        // [TestCase("AxB", ExpectedResult = -1)]
-        // [TestCase("EEB", ExpectedResult = 80)]
+        [TestCase("A", ExpectedResult = 50)]
+        [TestCase("AAA", ExpectedResult = 130)]
+        [TestCase("BBB", ExpectedResult = 75)]
+        [TestCase("AAAAAAA", ExpectedResult = 300)]
+        [TestCase("AB", ExpectedResult = 80)]
+        [TestCase("AxB", ExpectedResult = -1)]
+        [TestCase("EEB", ExpectedResult = 80)]
         [TestCase("EEEEBB", ExpectedResult = 160)]
         public int ComputePrice(string? skus)
         {
@@ -27,4 +27,5 @@ namespace BeFaster.App.Tests.Solutions.SUM
         }
     }
 }
+
 
