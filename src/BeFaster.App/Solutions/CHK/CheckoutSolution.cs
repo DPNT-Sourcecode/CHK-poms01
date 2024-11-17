@@ -65,10 +65,12 @@ namespace BeFaster.App.Solutions.CHK
                     return 15 * numberOfItems;
                 case "E":
                     var price = 40 * numberOfItems;
-                    var discount = 0;
-                    var discountPacks = numberOfItems / 2;
-                    if( discountPacks > 0 && listOfSKUs.ContainsKey('B'))
-                        discount = 30 * discountPacks;
+                    int BItemsCount;
+                    listOfSKUs.TryGetValue('B', out BItemsCount);
+                    var possibleDiscountPacks = numberOfItems / 2;
+                    var actualDiscountPacks = possibleDiscountPacks < BItemsCount ? possibleDiscountPacks : BItemsCount;
+
+                    var discount = 30 * actualDiscountPacks;
                     return price - discount;
                 default:
                     return -1;
@@ -108,4 +110,5 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
