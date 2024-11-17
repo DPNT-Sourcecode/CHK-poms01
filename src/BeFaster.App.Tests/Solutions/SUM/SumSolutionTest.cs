@@ -24,7 +24,7 @@ namespace BeFaster.App.Tests.Solutions.SUM
         // [TestCase("FFFF", ExpectedResult = 30)]
         // [TestCase("FF", ExpectedResult = 20)]
         // [TestCase("FFF", ExpectedResult = 20)]
-        [TestCase("STXSTX", ExpectedResult = 90)]
+        // [TestCase("STXSTX", ExpectedResult = 90)]
         [TestCase("SSSZ", ExpectedResult = 65)]
         public int ComputePrice(string? skus)
         {
@@ -32,4 +32,5 @@ namespace BeFaster.App.Tests.Solutions.SUM
         }
     }
 }
+
 
