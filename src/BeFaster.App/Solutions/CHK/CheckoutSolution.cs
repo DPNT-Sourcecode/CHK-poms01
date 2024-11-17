@@ -19,8 +19,10 @@ namespace BeFaster.App.Solutions.CHK
             var skusList = skus.Split(',');
             foreach (var sku in skusList)
             {
-                var numberOfItems = RetrieveNumberOfItems(sku);
-                var skuPrice = ComputeIndividualPrice(sku.Trim());
+                var trimmedSKU = sku.Trim();
+                var numberOfItems = RetrieveNumberOfItems(trimmedSKU);
+                var skuName = RetrieveSKUName(trimmedSKU);
+                var skuPrice = ComputeIndividualPrice(skuName, numberOfItems);
                 if(skuPrice == -1)
                     return -1;
 
@@ -36,6 +38,12 @@ namespace BeFaster.App.Solutions.CHK
             if(string.IsNullOrEmpty(numberOfItemsString))
                 return 0;
             return int.Parse(numberOfItemsString);
+        }
+
+        private static string RetrieveSKUName(string sku)
+        {
+            var skuName = Regex.Match(sku, @"[a-zA-Z]+$").Value;
+            return skuName;
         }
 
         private static int ComputeIndividualPrice(string sku, int numberOfItems = 1)
@@ -63,6 +71,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 

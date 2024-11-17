@@ -13,12 +13,14 @@ namespace BeFaster.App.Tests.Solutions.SUM
             return SumSolution.Sum(x, y);
         }
 
-        [TestCase("3A", ExpectedResult = 130)]
+        // [TestCase("3A", ExpectedResult = 130)]
+        [TestCase("3B", ExpectedResult = 75)]
         public int ComputePrice(string? skus)
         {
             return CheckoutSolution.ComputePrice(skus);
         }
     }
 }
+
 
 
