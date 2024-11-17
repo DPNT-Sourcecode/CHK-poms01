@@ -56,10 +56,11 @@ namespace BeFaster.App.Solutions.CHK
                 if(searchedItems.Contains(sku) && charCount < maxCharCount)
                 {
                     charCount += 1;
-                    skusChars.Remove(sku);
+                    continue;
                 }
+                newskusChars.Add(sku);
             }
-            return (new string(skusChars.ToArray()), numberOfPacks * 45);
+            return (new string(newskusChars.ToArray()), numberOfPacks * 45);
         }
 
         private static int ComputeIndividualPrice(IDictionary<char, int> listOfSKUs, string sku, int numberOfItems = 1)
@@ -204,6 +205,7 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
 
