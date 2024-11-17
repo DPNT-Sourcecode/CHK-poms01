@@ -98,7 +98,7 @@ namespace BeFaster.App.Solutions.CHK
                     return 90 * numberOfItems;
                 case "M":
                     var freeItems = CalculateFreeItems(listOfSKUs, 'N', 3);
-                    return 15 * numberOfItems - freeItems;
+                    return 15 * (numberOfItems - freeItems);
                 case "N":
                     return 40 * numberOfItems;
                 case "O":
@@ -116,7 +116,8 @@ namespace BeFaster.App.Solutions.CHK
                         new ProductPriceList { NumberOfItems = 1, Price = 30},
                         new ProductPriceList { NumberOfItems = 3, Price = 80}
                     };
-                    return CalculatePriceIncludingDiscount(numberOfItems, priceListQ);
+                    var freeItemsR = CalculateFreeItems(listOfSKUs, 'R', 3);
+                    return CalculatePriceIncludingDiscount(numberOfItems - freeItemsR, priceListQ);
                 case "R":
                     return 50 * numberOfItems;
                 case "S":
@@ -124,7 +125,8 @@ namespace BeFaster.App.Solutions.CHK
                 case "T":
                     return 20 * numberOfItems;
                 case "U":
-                    return 40 * numberOfItems;
+                    var freeItemsU = CalculateFreeItems(listOfSKUs, 'U', 3);
+                    return 40 * (numberOfItems - freeItemsU);
                 case "V":
                     var priceListV = new List<ProductPriceList> 
                     {
@@ -143,9 +145,6 @@ namespace BeFaster.App.Solutions.CHK
                     return 50 * numberOfItems;
                 default:
                     return -1;
-| N    | 40    | 3N get one M free      |
-| R    | 50    | 3R get one Q free      |
-| U    | 40    | 3U get one U free      |
             }
         }
 
@@ -183,6 +182,7 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
 
