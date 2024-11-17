@@ -16,13 +16,11 @@ namespace BeFaster.App.Solutions.CHK
         private static int ComputeTotalPrice(string skus)
         {
             var totalPrice = 0;
-            var items = RetrieveItemsFromSkuString(skus);
-            foreach (var sku in )
+            var items = RetrieveItemsFromSkuString(skus.Trim());
+            foreach (var sku in items)
             {
-                var trimmedSKU = sku.Trim();
-                var numberOfItems = RetrieveNumberOfItems(trimmedSKU);
-                var skuName = RetrieveSKUName(trimmedSKU);
-                var skuPrice = ComputeIndividualPrice(skuName, numberOfItems);
+                var skuName = sku.Key.ToString();
+                var skuPrice = ComputeIndividualPrice(skuName, sku.Value);
                 if(skuPrice == -1)
                     return -1;
 
@@ -31,9 +29,13 @@ namespace BeFaster.App.Solutions.CHK
             return totalPrice;
         }
 
-        private Dictionary<char, int> RetrieveItemsFromSkuString(skus)
+        private static Dictionary<char, int> RetrieveItemsFromSkuString(string skus)
         {
             var result = new Dictionary<char, int>();
+
+            result = skus
+                .GroupBy(c => c)
+                .ToDictionary(item => item.Key, item => item.Count());
 
             return result;
         }
@@ -78,6 +80,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
