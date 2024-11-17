@@ -16,8 +16,8 @@ namespace BeFaster.App.Solutions.CHK
         private static int ComputeTotalPrice(string skus)
         {
             var totalPrice = 0;
-            var items = RetrieveItemsFromSkuString(skus.Trim());
-            // var groupPrice = ComputePriceForGroupItems(skus);
+            (string skusUpdated, int groupPrice)  = ComputePriceForGroupItems(skus);
+            var items = RetrieveItemsFromSkuString(skusUpdated.Trim());
             foreach (var sku in items)
             {
                 var skuName = sku.Key.ToString();
@@ -27,7 +27,7 @@ namespace BeFaster.App.Solutions.CHK
 
                 totalPrice += skuPrice;
             }
-            return totalPrice;
+            return totalPrice + groupPrice;
         }
 
         private static Dictionary<char, int> RetrieveItemsFromSkuString(string skus)
@@ -41,7 +41,7 @@ namespace BeFaster.App.Solutions.CHK
             return result;
         }
 
-        private static int ComputePriceForGroupItems(string skus)
+        private static (string, int) ComputePriceForGroupItems(string skus)
         {
             var searchedItems = new List<char> { 'S', 'T', 'X', 'Y', 'Z' };
             var skusChars = skus.ToCharArray().ToList();
@@ -51,14 +51,15 @@ namespace BeFaster.App.Solutions.CHK
             var charCount = 0;
             var maxCharCount = numberOfPacks * 3;
 
-            for (int i = 0; i < skusChars.Count() - 1; i++)
+            foreach (var sku in skusChars)
             {
-                if(searchedItems.Contains(skusChars[i]))
-                    count =+ 1; 
+                if(searchedItems.Contains(sku) && charCount < maxCharCount)
+                {
+                    charCount += 1;
+                    skusChars.Remove(sku);
+                }
             }
-
-            // var discountItems = count / discountItemCount;
-            // return discountItems * 45;
+            return (new string(skusChars.ToArray()), numberOfPacks * 45);
         }
 
         private static int ComputeIndividualPrice(IDictionary<char, int> listOfSKUs, string sku, int numberOfItems = 1)
@@ -203,6 +204,7 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
 
