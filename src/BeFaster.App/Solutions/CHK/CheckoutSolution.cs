@@ -97,7 +97,8 @@ namespace BeFaster.App.Solutions.CHK
                 case "L":
                     return 90 * numberOfItems;
                 case "M":
-                    return 15 * numberOfItems;
+                    var freeItems = CalculateFreeItems(listOfSKUs, 'N', 3);
+                    return 15 * numberOfItems - freeItems;
                 case "N":
                     return 40 * numberOfItems;
                 case "O":
@@ -120,21 +121,41 @@ namespace BeFaster.App.Solutions.CHK
                     return 50 * numberOfItems;
                 case "S":
                     return 30 * numberOfItems;
+                case "T":
+                    return 20 * numberOfItems;
+                case "U":
+                    return 40 * numberOfItems;
+                case "V":
+                    var priceListV = new List<ProductPriceList> 
+                    {
+                        new ProductPriceList { NumberOfItems = 1, Price = 50},
+                        new ProductPriceList { NumberOfItems = 2, Price = 90},
+                        new ProductPriceList { NumberOfItems = 3, Price = 130}
+                    };
+                    return CalculatePriceIncludingDiscount(numberOfItems, priceListV);
+                case "W":
+                    return 20 * numberOfItems;
+                case "X":
+                    return 90 * numberOfItems;
+                case "Y":
+                    return 10 * numberOfItems;
+                case "Z":
+                    return 50 * numberOfItems;
                 default:
                     return -1;
 | N    | 40    | 3N get one M free      |
 | R    | 50    | 3R get one Q free      |
-| S    | 30    |                        |
-| T    | 20    |                        |
 | U    | 40    | 3U get one U free      |
-| V    | 50    | 2V for 90, 3V for 130  |
-| W    | 20    |                        |
-| X    | 90    |                        |
-| Y    | 10    |                        |
-| Z    | 50    |                    
             }
         }
 
+        private static int CalculateFreeItems(IDictionary<char, int> listOfSKUs, char dependentItem, int priviledNumber)
+        {
+            int ItemsCount;
+            listOfSKUs.TryGetValue(dependentItem, out ItemsCount);
+            int freeItems = ItemsCount / priviledNumber;
+            return freeItems;
+        }
         private static int CalculatePriceIncludingDiscount(int numberOfItems, IEnumerable<ProductPriceList> priceList)
         {
             var price = 0;
@@ -162,5 +183,6 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
