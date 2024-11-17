@@ -49,6 +49,7 @@ namespace BeFaster.App.Solutions.CHK
             var numberOfPacks = count / 3;
             var newskusChars = new List<char>();
             var charCount = 0;
+            var maxCharCount = numberOfPacks * 3;
 
             for (int i = 0; i < skusChars.Count() - 1; i++)
             {
@@ -202,5 +203,6 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
