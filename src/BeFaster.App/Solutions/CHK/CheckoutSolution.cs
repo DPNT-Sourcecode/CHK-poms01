@@ -8,7 +8,7 @@ namespace BeFaster.App.Solutions.CHK
         public static int ComputePrice(string? skus)
         {
             if(string.IsNullOrEmpty(skus))
-                return -1;
+                return 0;
             
             return ComputeTotalPrice(skus);
         }
@@ -80,6 +80,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
