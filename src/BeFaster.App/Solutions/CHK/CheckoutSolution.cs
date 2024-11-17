@@ -16,8 +16,8 @@ namespace BeFaster.App.Solutions.CHK
         private static int ComputeTotalPrice(string skus)
         {
             var totalPrice = 0;
-            
-            foreach (var sku in skus.ToCharArray())
+            var items = RetrieveItemsFromSkuString(skus);
+            foreach (var sku in )
             {
                 var trimmedSKU = sku.Trim();
                 var numberOfItems = RetrieveNumberOfItems(trimmedSKU);
@@ -29,6 +29,13 @@ namespace BeFaster.App.Solutions.CHK
                 totalPrice += skuPrice;
             }
             return totalPrice;
+        }
+
+        private Dictionary<char, int> RetrieveItemsFromSkuString(skus)
+        {
+            var result = new Dictionary<char, int>();
+
+            return result;
         }
 
 
@@ -71,5 +78,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
