@@ -71,7 +71,7 @@ namespace BeFaster.App.Solutions.CHK
                 case "F":
                     int fItemsCount;
                     listOfSKUs.TryGetValue('F', out fItemsCount);
-                    int freeItemsF = fItemsCount / 2;
+                    int freeItemsF = fItemsCount / 3;
                     return 10 * (numberOfItems - freeItemsF);
                 default:
                     return -1;
@@ -105,3 +105,4 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
