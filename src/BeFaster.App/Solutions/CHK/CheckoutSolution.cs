@@ -36,7 +36,7 @@ namespace BeFaster.App.Solutions.CHK
         {
             var numberOfItemsString = Regex.Match(sku, @"^\d+").Value;
             if(string.IsNullOrEmpty(numberOfItemsString))
-                return 0;
+                return 1;
             return int.Parse(numberOfItemsString);
         }
 
@@ -71,3 +71,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
