@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using BeFaster.Runner.Exceptions;
 
 namespace BeFaster.App.Solutions.CHK
@@ -43,7 +44,7 @@ namespace BeFaster.App.Solutions.CHK
 
         private static int ComputePriceForGroupItems2(Dictionary<char, int> items)
         {
-            var searchedItems = new List<char> { 'S', 'T', 'X', 'Y', 'Z' };
+            var searchedItems = new List<char> { 'Z', 'S', 'T', 'Y', 'X'};
             var count = items.Where(item => searchedItems.Contains(item.Key)).Select(item => item.Value).Sum();
             var numberOfPacks = count / 3;
             var numberOfItemsToRemove = numberOfPacks * 3;
@@ -51,17 +52,24 @@ namespace BeFaster.App.Solutions.CHK
 
 
             int zCount;
-            if(items.TryGetValue('Z', out zCount))
+            foreach (var item in searchedItems)
             {
-                if(zCount >= numberOfItemsToRemove)
+                if(removedItemsCount == numberOfItemsToRemove)
+                    break;
+                
+                if(items.TryGetValue(item, out zCount))
                 {
-                    items['Z'] = zCount - numberOfItemsToRemove;
-                } else {
-                    items['Z'] = 0;
+                    if(zCount >= numberOfItemsToRemove - removedItemsCount)
+                    {
+                        items['Z'] = zCount - numberOfItemsToRemove;
+                        removedItemsCount = numberOfItemsToRemove;
+                    } else if(zCount < numberOfItemsToRemove - removedItemsCount) {
+                        items['Z'] = 0;
+                        removedItemsCount += zCount;
+                    }
                 }
             }
-
-            items['Y'] = 
+            return 45 * numberOfPacks;
         }
 
         private static (string, int) ComputePriceForGroupItems(string skus)
@@ -228,4 +236,5 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
