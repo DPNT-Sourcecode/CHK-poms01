@@ -16,8 +16,8 @@ namespace BeFaster.App.Solutions.CHK
         private static int ComputeTotalPrice(string skus)
         {
             var totalPrice = 0;
-            var skusList = skus.Split(',');
-            foreach (var sku in skusList)
+            
+            foreach (var sku in skus.ToCharArray())
             {
                 var trimmedSKU = sku.Trim();
                 var numberOfItems = RetrieveNumberOfItems(trimmedSKU);
@@ -71,4 +71,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
