@@ -60,14 +60,19 @@ namespace BeFaster.App.Solutions.CHK
                     };
                     int eItemsCount;
                     listOfSKUs.TryGetValue('E', out eItemsCount);
-                    int freeItems =  eItemsCount / 2;
-                    return CalculatePriceIncludingDiscount(numberOfItems - freeItems, priceListB);
+                    int freeItemsB =  eItemsCount / 2;
+                    return CalculatePriceIncludingDiscount(numberOfItems - freeItemsB, priceListB);
                 case "C":
                     return 20 * numberOfItems;
                 case "D":
                     return 15 * numberOfItems;
                 case "E":
                     return 40 * numberOfItems;
+                case "F":
+                    int fItemsCount;
+                    listOfSKUs.TryGetValue('F', out fItemsCount);
+                    int freeItemsF = fItemsCount / 2;
+                    return 10 * (numberOfItems - freeItemsF);
                 default:
                     return -1;
             }
@@ -100,6 +105,7 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
 
