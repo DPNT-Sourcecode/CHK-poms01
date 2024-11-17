@@ -17,7 +17,7 @@ namespace BeFaster.App.Solutions.CHK
         {
             var totalPrice = 0;
             var items = RetrieveItemsFromSkuString(skus.Trim());
-            var groupPrice = ComputePriceForGroupItems(items);
+            // var groupPrice = ComputePriceForGroupItems(skus);
             foreach (var sku in items)
             {
                 var skuName = sku.Key.ToString();
@@ -41,11 +41,20 @@ namespace BeFaster.App.Solutions.CHK
             return result;
         }
 
-        private static int ComputePriceForGroupItems(Dictionary<char, int> items)
-        {
-            char[] searchedItems = { 'S', 'T', 'X', 'Y', 'Z' };
-            items.Count(item => )
-        }
+        // private static int ComputePriceForGroupItems(string skus)
+        // {
+        //     var count = 0;
+        //     var searchedItems = new List<char> { 'S', 'T', 'X', 'Y', 'Z' };
+        //     var discountItems = new Dictionary<char, int>();
+        //     foreach (var item in items)
+        //     {
+        //         if(searchedItems.Contains(item.Key))
+        //             discountItems.Add(item.Key, item.Value);
+        //     }
+        //     var count = items.Count(item => searchedItems.Contains(item.Key));
+        //     // var discountItems = count / discountItemCount;
+        //     // return discountItems * 45;
+        // }
 
         private static int ComputeIndividualPrice(IDictionary<char, int> listOfSKUs, string sku, int numberOfItems = 1)
         {
@@ -189,6 +198,7 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
 
