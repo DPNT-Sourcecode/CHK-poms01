@@ -51,20 +51,20 @@ namespace BeFaster.App.Solutions.CHK
             var removedItemsCount = 0;
 
 
-            int zCount;
             foreach (var item in searchedItems)
             {
                 if(removedItemsCount == numberOfItemsToRemove)
                     break;
                 
+                int zCount;
                 if(items.TryGetValue(item, out zCount))
                 {
                     if(zCount >= numberOfItemsToRemove - removedItemsCount)
                     {
-                        items['Z'] = zCount - numberOfItemsToRemove;
+                        items[item] = zCount - numberOfItemsToRemove;
                         removedItemsCount = numberOfItemsToRemove;
                     } else if(zCount < numberOfItemsToRemove - removedItemsCount) {
-                        items['Z'] = 0;
+                        items[item] = 0;
                         removedItemsCount += zCount;
                     }
                 }
@@ -236,6 +236,7 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
 
