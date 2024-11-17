@@ -41,6 +41,15 @@ namespace BeFaster.App.Solutions.CHK
             return result;
         }
 
+        private static int ComputePriceForGroupItems2(Dictionary<char, int> items)
+        {
+            var searchedItems = new List<char> { 'S', 'T', 'X', 'Y', 'Z' };
+            var count = items.Where(item => searchedItems.Contains(item.Key)).Select(item => item.Value).Sum();
+            var numberOfPacks = count / 3;
+
+            
+        }
+
         private static (string, int) ComputePriceForGroupItems(string skus)
         {
             var searchedItems = new List<char> { 'S', 'T', 'X', 'Y', 'Z' };
@@ -205,8 +214,3 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
-
-
-
-
-
