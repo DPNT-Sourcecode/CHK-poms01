@@ -55,7 +55,7 @@ namespace BeFaster.App.Solutions.CHK
             return skuName;
         }
 
-        private static int ComputeIndividualPrice(string sku, int numberOfItems = 1)
+        private static int ComputeIndividualPrice(IDictionary<char, int> listOfSKUs, string sku, int numberOfItems = 1)
         {
             switch (sku)
             {
@@ -79,7 +79,11 @@ namespace BeFaster.App.Solutions.CHK
                 case "D":
                     return 15 * numberOfItems;
                 case "E":
-                    return 40;
+                    var price = 40 * numberOfItems;
+                    var discount = 0;
+                    if(numberOfItems >= 2 && listOfSKUs.ContainsKey('B'))
+                        discount = 30;
+                    return price - discount;
                 default:
                     return -1;
             }
@@ -118,5 +122,6 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
