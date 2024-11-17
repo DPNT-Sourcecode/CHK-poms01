@@ -65,13 +65,9 @@ namespace BeFaster.App.Solutions.CHK
 
         private static int CalculatePriceIncludingDiscount(int numberOfItems, int individualPrice, int discountPrice, int numberOfItemsForDiscount)
         {
-            int discountItemsTotalPrice = numberOfItems / 3 * discountPrice;
-            int individualTotalPrice = numberOfItems % 3 * individualPrice;
+            int discountItemsTotalPrice = numberOfItems / numberOfItemsForDiscount * discountPrice;
+            int individualTotalPrice = numberOfItems % numberOfItemsForDiscount * individualPrice;
             return discountItemsTotalPrice + individualTotalPrice;
         }
     }
 }
-
-
-
-
