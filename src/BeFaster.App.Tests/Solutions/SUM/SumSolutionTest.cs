@@ -20,11 +20,10 @@ namespace BeFaster.App.Tests.Solutions.SUM
         [TestCase("AB", ExpectedResult = 80)]
         [TestCase("AxB", ExpectedResult = -1)]
         [TestCase("EEB", ExpectedResult = 80)]
+        [TestCase("EEEEBB", ExpectedResult = 160)]
         public int ComputePrice(string? skus)
         {
             return CheckoutSolution.ComputePrice(skus);
         }
     }
 }
-
-
