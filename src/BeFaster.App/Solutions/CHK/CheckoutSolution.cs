@@ -58,31 +58,21 @@ namespace BeFaster.App.Solutions.CHK
                         new ProductPriceList { NumberOfItems = 1, Price = 30},
                         new ProductPriceList { NumberOfItems = 2, Price = 45}
                     };
-                    return CalculatePriceIncludingDiscount(numberOfItems, priceListB);
+                    int eItemsCount;
+                    listOfSKUs.TryGetValue('E', out eItemsCount);
+                    int freeItems =  eItemsCount / 2;
+                    return CalculatePriceIncludingDiscount(numberOfItems - freeItems, priceListB);
                 case "C":
                     return 20 * numberOfItems;
                 case "D":
                     return 15 * numberOfItems;
                 case "E":
-                    var price = 40 * numberOfItems;
-                    int BItemsCount;
-                    listOfSKUs.TryGetValue('B', out BItemsCount);
-                    var possibleDiscountPacks = numberOfItems / 2;
-                    var actualDiscountPacks = possibleDiscountPacks < BItemsCount ? possibleDiscountPacks : BItemsCount;
-
-                    var discount = 30 * actualDiscountPacks;
-                    return price - discount;
+                    return 40 * numberOfItems;
                 default:
                     return -1;
             }
         }
 
-        // private static int CalculatePriceIncludingDiscount(int numberOfItems, int individualPrice, int discountPrice, int numberOfItemsForDiscount)
-        // {
-        //     int discountItemsTotalPrice = numberOfItems / numberOfItemsForDiscount * discountPrice;
-        //     int individualTotalPrice = numberOfItems % numberOfItemsForDiscount * individualPrice;
-        //     return discountItemsTotalPrice + individualTotalPrice;
-        // }
         private static int CalculatePriceIncludingDiscount(int numberOfItems, IEnumerable<ProductPriceList> priceList)
         {
             var price = 0;
@@ -110,5 +100,6 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
