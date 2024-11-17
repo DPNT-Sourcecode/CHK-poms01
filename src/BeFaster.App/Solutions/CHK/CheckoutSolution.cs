@@ -90,8 +90,8 @@ namespace BeFaster.App.Solutions.CHK
                 case "K":
                     var priceListK = new List<ProductPriceList> 
                     {
-                        new ProductPriceList { NumberOfItems = 1, Price = 80},
-                        new ProductPriceList { NumberOfItems = 2, Price = 150}
+                        new ProductPriceList { NumberOfItems = 1, Price = 70},
+                        new ProductPriceList { NumberOfItems = 2, Price = 120}
                     };
                     return CalculatePriceIncludingDiscount(numberOfItems, priceListK);
                 case "L":
@@ -121,7 +121,7 @@ namespace BeFaster.App.Solutions.CHK
                 case "R":
                     return 50 * numberOfItems;
                 case "S":
-                    return 30 * numberOfItems;
+                    return 20 * numberOfItems;
                 case "T":
                     return 20 * numberOfItems;
                 case "U":
@@ -182,3 +182,4 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
