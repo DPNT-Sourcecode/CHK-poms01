@@ -20,7 +20,7 @@ namespace BeFaster.App.Solutions.CHK
             foreach (var sku in items)
             {
                 var skuName = sku.Key.ToString();
-                var skuPrice = ComputeIndividualPrice(skuName, sku.Value);
+                var skuPrice = ComputeIndividualPrice(items, skuName, sku.Value);
                 if(skuPrice == -1)
                     return -1;
 
@@ -38,21 +38,6 @@ namespace BeFaster.App.Solutions.CHK
                 .ToDictionary(item => item.Key, item => item.Count());
 
             return result;
-        }
-
-
-        private static int RetrieveNumberOfItems(string sku)
-        {
-            var numberOfItemsString = Regex.Match(sku, @"^\d+").Value;
-            if(string.IsNullOrEmpty(numberOfItemsString))
-                return 1;
-            return int.Parse(numberOfItemsString);
-        }
-
-        private static string RetrieveSKUName(string sku)
-        {
-            var skuName = Regex.Match(sku, @"[a-zA-Z]+$").Value;
-            return skuName;
         }
 
         private static int ComputeIndividualPrice(IDictionary<char, int> listOfSKUs, string sku, int numberOfItems = 1)
@@ -122,6 +107,7 @@ namespace BeFaster.App.Solutions.CHK
         
     }
 }
+
 
 
 
